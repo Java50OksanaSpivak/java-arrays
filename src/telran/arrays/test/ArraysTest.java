@@ -1,5 +1,4 @@
 package telran.arrays.test;
-
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import telran50.arrays.ArraysInt;
-
+//import static toBinary
 public class ArraysTest {
 @Test
 void initialTest() {
@@ -19,7 +18,7 @@ void initialTest() {
 	assertTrue(ar2==ar2_3);
 	assertArrayEquals(ar1,ar2); 
 	ar2_3[0]=10;
-	assertArrayEquals(ar1,ar2); //not equals
+	assertFalse(ar1==ar2); //not equals
 }
 @Test
 void copyOfIntTest() {
@@ -27,7 +26,7 @@ void copyOfIntTest() {
 	int [] expected1 = {10,5,15};
 	int [] expected2 = {10,5};
 	int [] expected3 = {10,5,15,0,0};
-	int [] expected4 = {10,5,15};
+	//int [] expected4 = {10,5,15};
 	assertArrayEquals(expected1,Arrays.copyOf(ar1, 3));
 	assertArrayEquals(expected2,Arrays.copyOf(ar1, 2));
 	assertArrayEquals(expected3,Arrays.copyOf(ar1, 5));
@@ -66,18 +65,20 @@ void insertNumberTest() {
 }
 @Test
 void removeNumberTest() {
+	int []expected = {1,2,3,4,5,6,7};
 	int index = 3;
 	int[]src = {1,2,3,20,4,5,6,7};
-	int[]src1 = {20,1,2,3,4,5,6,7};
-	int[]src2 = {1,2,3,4,5,6,7,20};
-	int []expected = {1,2,3,4,5,6,7};
 	assertArrayEquals(expected, ArraysInt.removeNumber(src,index));
+	index = 0;
+	int[]src1 = {20,1,2,3,4,5,6,7};
 	assertArrayEquals(expected, ArraysInt.removeNumber(src1,index));
+	int[]src2 = {1,2,3,4,5,6,7,20};
+	index = 7;
 	assertArrayEquals(expected, ArraysInt.removeNumber(src2,index));
 }
 @Test
 void binarySearchTest() {
-	 int[] array = {10, 20, 20, 30, 40};
+	 int[] array = {10, 20, 24, 30, 40};
      int pos1 = Arrays.binarySearch(array, 20);
      int pos2 = Arrays.binarySearch(array, 25);
      int pos3 = Arrays.binarySearch(array, 5);
@@ -92,17 +93,14 @@ void binarySearchTest() {
 @Test
 void insertNumberSortedTest() {
 	int [] src = {10,20,30,40,50};
-	int number1 = 5;
-	int number2 = 15;
-	int number3 = 30;
-	int number4 = 56;
 	int [] res1 = {5,10,20,30,40,50};
 	int [] res2 = {10,15,20,30,40,50};
 	int [] res3 = {10,20,30,30,40,50};
 	int [] res4 = {10,20,30,40,50,56};
-	assertArrayEquals(res1,ArraysInt.insertNumberSorted(src,number1));
-	assertArrayEquals(res2,ArraysInt.insertNumberSorted(src,number2));
-	assertArrayEquals(res3,ArraysInt.insertNumberSorted(src,number3));
-	assertArrayEquals(res4,ArraysInt.insertNumberSorted(src,number4));
+	assertArrayEquals(res1,ArraysInt.insertNumberSorted(src,5));
+	assertArrayEquals(res2,ArraysInt.insertNumberSorted(src,15));
+	assertArrayEquals(res3,ArraysInt.insertNumberSorted(src,30));
+	assertArrayEquals(res4,ArraysInt.insertNumberSorted(src,56));
 }
+
 }
