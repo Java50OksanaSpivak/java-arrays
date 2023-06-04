@@ -1,13 +1,12 @@
 package telran.arrays.test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.Timeout;
 import telran50.arrays.ArraysInt;
-//import static toBinary
+import static telran50.arrays.ArraysInt.myBinarySearch;
+import java.util.Random;
 public class ArraysTest {
 @Test
 void initialTest() {
@@ -103,4 +102,86 @@ void insertNumberSortedTest() {
 	assertArrayEquals(res4,ArraysInt.insertNumberSorted(src,56));
 }
 
+////////////////////////// class work 03
+
+@Test
+void maxIntTest() {
+	assertEquals(Integer.MAX_VALUE, getIntMax());
+}
+private int getIntMax() {
+	int res = 1;
+	while(res > 0) {
+		res++;
+	}
+	return res - 1;
+}
+
+@Test
+@Timeout(3)
+void maxLongTest() {
+	assertEquals(Long.MAX_VALUE, getLongMax());
+}
+private long getLongMax() {
+	long res = 1;
+	while(res > 0) {
+		res *= 2;
+	}
+	return res - 1;
+}
+
+/////////////  HW 03
+
+@Test
+void myBinarySearchTest() {
+	int[] array = {10, 20, 24, 30, 40};
+    int pos1 = myBinarySearch(array, 20);
+    int pos2 = myBinarySearch(array, 25);
+    int pos3 = myBinarySearch(array, 5);
+    int pos4 = myBinarySearch(array,45);
+    int pos5 = myBinarySearch(array, 30);
+    assertEquals(1,pos1);
+    assertEquals(-4,pos2);//-3
+    assertEquals(-1,pos3);
+    assertEquals(-6,pos4);//-5
+    assertEquals(3,pos5);
+    int[] array1 = {10, 20, 20, 20, 24, 30, 40};
+    int pos6 = myBinarySearch(array1, 20);
+    assertEquals(1,pos6);
+    int[] array2 = {10, 20, 20, 20, 20, 24, 30, 40};
+    int pos7 = myBinarySearch(array2, 20);
+    assertEquals(1,pos7);
+    int[] array3 = { 20, 20, 20, 20, 20, 20, 20, 24, 30, 40};
+    int pos8 = myBinarySearch(array3, 20);
+    assertEquals(0,pos8);
+}
+
+@Test
+void sortBubbleQuickTest() {
+	int N_ELEMENTS=10000;
+	int [] bigArr = new int [N_ELEMENTS];
+	bigArr = ArraysInt.randomMatrix(N_ELEMENTS);
+	int [] bigArr1 = Arrays.copyOf(bigArr,bigArr.length);
+	
+	long startTime = System.nanoTime();
+	ArraysInt.bubbleSort(bigArr);
+	long bubbleSortTime = System.nanoTime() - startTime;
+	assertTrue(ArraysInt.isSorted(bigArr));
+	
+	startTime = System.nanoTime();
+	ArraysInt.quickSort(bigArr1);
+	long quickSortTime = System.nanoTime() - startTime;
+	assertTrue(ArraysInt.isSorted(bigArr1));
+	
+	assertTrue(quickSortTime < bubbleSortTime);
+}
+
+@Test
+	void muchRepeatedTest () {
+	int N_ELEMENTS=1000000;
+	int N_RUNS=999898;
+	int array [] = new int [N_ELEMENTS];
+	for(int i= 0; i < N_RUNS ; i++) {
+		assertEquals(0, ArraysInt.myBinarySearch(array, 0));
+	}
+}
 }
