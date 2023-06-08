@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import telran50.arrays.ArraysInt;
 import static telran50.arrays.ArraysInt.myBinarySearch;
+import static telran50.arrays.MatricesInt.transpMatrix;
+
 import java.util.Random;
+
 public class ArraysTest {
 @Test
 void initialTest() {

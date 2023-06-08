@@ -127,25 +127,21 @@ public static int myBinarySearch(int[] array, int number) {
 		}
 		middle = (left + right) / 2;
 	}
-	if (array[middle] == number) {
-		   
+	if (array[middle] == number) {	   
 			right = middle;
 			middle = (left + right) / 2;
 			while (( left <= right )  ) {
 				if (array[middle] < number)
 					left = middle + 1;
 				else 
-					right = middle -1 ;
-			
+					right = middle -1 ;			
 			  middle = (left + right) / 2;
-			}
-			
+			}			
 			middle=left;
 	}
 		else	{
 			middle = -(left + 1);
-		}
-			
+		}		
 	return middle;
 }
 
@@ -174,5 +170,8 @@ public static boolean isSorted(int [] arr) {
 	}
 	return isSorted;
 }
+
+
+
 
 }
